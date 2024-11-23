@@ -80,11 +80,11 @@ public class Board {
         this.inDate = inDate;
     }
 
-    public Date getUupDate() {
+    public Date getUpDate() {
         return upDate;
     }
 
-    public void setUupDate(Date upDate) {
-        upDate = upDate;
+    public void setUpDate(Date upDate) {
+        this.upDate = upDate;
     }
 }

@@ -63,7 +63,7 @@ class BoardRepositoryTest {
         board.setContent("this is test");
         board.setWriter("nohhb");
         board.setInDate(new Date());
-        board.setUupDate(new Date());
+        board.setUpDate(new Date());
         board.setViewCnt(0L);
         boardRepository.save(board);
     }
