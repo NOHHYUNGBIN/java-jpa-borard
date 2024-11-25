@@ -1,11 +1,26 @@
 package com.nohhb.board;
 
 import jakarta.transaction.Transactional;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
 public interface BoardRepository extends CrudRepository<Board, Long> {
+    @Query("SELECT b FROM Board b") // JPQL은 대소문자 구분에 주의
+    List<Board> findAllBoard();
+
+    @Query("SELECT b FROM Board b WHERE b.title =?1 AND b.writer=?2") // JPQL은 대소문자 구분에 주의
+    List<Board> findByTitleAndWriter2(String title, String writer);
+
+    @Query("SELECT b FROM Board b WHERE b.title =:title AND b.writer=:writer") // JPQL은 대소문자 구분에 주의
+    List<Board> findByTitleAndWriter3(String title, String writer);
+
+    @Query(value="SELECT * FROM BOARD", nativeQuery = true) // JPQL은 대소문자 구분에 주의
+    List<Board> findAllBoardBySQL();
+
+    @Query(value="SELECT TITLE,WRITER FROM BOARD", nativeQuery = true) // JPQL은 대소문자 구분에 주의
+    List<Object[]> findAllBoardBySQL2();
 
     // select count(*) from board where writer = :writer 와 같음.
     int countAllByWriter(String writer);
