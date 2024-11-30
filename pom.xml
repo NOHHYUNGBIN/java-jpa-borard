@@ -11,8 +11,8 @@
     <groupId>com.nohhb</groupId>
     <artifactId>jpaStudy</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>board</name>
-    <description>board</description>
+    <name>jpaStudy</name>
+    <description>jpaStudy</description>
     <url/>
     <licenses>
         <license/>
