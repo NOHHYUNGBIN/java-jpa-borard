@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.nohhb</groupId>
-    <artifactId>board</artifactId>
+    <artifactId>jpaStudy</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>board</name>
     <description>board</description>
