@@ -10,10 +10,18 @@ public class Board {
     @Id  // pk
     @GeneratedValue // 자동번호 증가
     private long bno;
+
     private String title;
+
     private String content;
-    private String writer;
+
+//    private String writer;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
     private Long viewCnt;
+
     @Temporal(value= TemporalType.TIMESTAMP)
     private Date inDate;
     @Temporal(value= TemporalType.TIMESTAMP)
@@ -25,11 +33,19 @@ public class Board {
                 "bno=" + bno +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
-                ", writer='" + writer + '\'' +
+//                ", user=" + user +
                 ", viewCnt=" + viewCnt +
                 ", inDate=" + inDate +
                 ", upDate=" + upDate +
                 '}';
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public long getBno() {
@@ -54,14 +70,6 @@ public class Board {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public String getWriter() {
-        return writer;
-    }
-
-    public void setWriter(String writer) {
-        this.writer = writer;
     }
 
     public Long getViewCnt() {

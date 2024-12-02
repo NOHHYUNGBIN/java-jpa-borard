@@ -1,19 +1,47 @@
 package com.nohhb.board;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class User {
     @Id
+    @Column(name="user_id")
     private String id;
     private String password;
     private String name;
     private String email;
     private Date inDate;
     private Date upDate;
+
+    // FetchType.EAGER - 두 엔티티의 정보를 같이 가져오는것(join)
+    // FetchType.LAZY - 따로 가져오는 것. 나중에 getList() <- default
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER) // User 하나에 여러 게시물
+    List<Board> list = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", inDate=" + inDate +
+                ", upDate=" + upDate +
+                ", list=" + list +
+                '}';
+    }
+
+    public List<Board> getList() {
+        return list;
+    }
+
+    public void setList(List<Board> list) {
+        this.list = list;
+    }
 
     public String getId() {
         return id;
@@ -61,17 +89,5 @@ public class User {
 
     public void setUpDate(Date upDate) {
         this.upDate = upDate;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", inDate=" + inDate +
-                ", upDate=" + upDate +
-                '}';
     }
 }
